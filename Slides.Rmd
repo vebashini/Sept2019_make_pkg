@@ -1,0 +1,117 @@
+---
+title: "Introduction to R package building - easier than I thought!"
+subtitle: "⚔<br/>with xaringan"
+author: "Vebashini Naidoo (@Vebash)"
+institute: "RLadies Johannesburg"
+date: "2019/09/22 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "rladies", "rladies-fonts"]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+# run xaringan::inf_mr() to interactively show slides changing on right
+```
+
+# Keep in touch
+
+[`r icon::fa("twitter")` @Vebash](http://twitter.com/vebash)  
+[`r icon::fa("github")` @sciencificity](http://github.com/sciencificity)  
+[`r icon::fa("paper-plane")` vebashini@gmail.com](mailto:vebashini@gmail.com)
+
+---
+
+<img style = "max-width: 33%; 
+              max-height = 33%; 
+              display:block; 
+              margin:auto" 
+              src="./disclaimer.jpg" 
+              width = 500/>
+<div style = "width: image width px; font-size: 100%; text-align:center;">
+Our package will be functional but not necessarily pretty.
+</div>
+
+<img style = "max-width: 90%; 
+              max-height = 90%; 
+              display:block; 
+              margin:auto" 
+              src="./1.gif" 
+              width = 500px/>
+
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# What's a package anyway?
+
+Packages are units of reproducible R code. 
+
+A package includes:
+- R functions
+- Documentation describing how to use the functions
+- Data
+
+---
+
+
+- Create a new R Project from the menu 
+
+`File -> New Project -> New Directory -> R Package`
+
+--
+
+- 
+
+--
+
+- 
+
+
+
+---
+
+# Git - Some tips & Useful commands
+
+## Using Git Bash
+- `pwd`: Tells you where you are currently, literally print working directory.
+<img src = "./git1.png" width = 300px>
+
+- `ls`: Gives you a list of files and folders in your current working directory.
+<img src = "./git2.png" width = 600px>
+
+- `mkdir name_of_folder`: Makes a new directory called **name_of_folder** in the current working directory.
+<img src = "./git3.png" width = 600px>
+
+---
+# Git - Some tips & Useful commands continued ...
+- `cd name_of_folder`: Places you in the **name_of_folder** directory.
+<img src = "./git4.PNG" width = 400px>
+
+- `git init`: Initialises a git repo in the directory you run the command from. You should now see a .git folder if you run `ls` after the initialisation.
+<img src = "./git5.PNG" width = 420px>
+
+- `git config user.name "Firstname Surname"` AND `git config user.email "test@testexample.com"`: Adds the user name and email address to the config file.
+<img src = "./git6.PNG" width = 500px>
+
+---
+# Git - Some tips & Useful commands continued ...
+- `cat .git/config`: Displays the contents of the config file.
+<img src = "./git7.PNG" width = 400px>
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
