@@ -65,15 +65,15 @@ class: inverse, center, middle
 
 Packages are organised units of reproducible R code. 
 
-A package includes:
-- R functions&lt;sup&gt;1&lt;/sup&gt;: abstraction of details - user only needs to know what inputs and outputs are needed.
-- Documentation: describing how to use the functions.
-- Data.
+A _package_ includes:
+- __R functions__&lt;sup&gt;1&lt;/sup&gt;: abstraction of details - user only needs to know what inputs and outputs are needed.
+- __Documentation__: describing how to use the functions.
+- __Data__.
 
-It's a friendly way to distribute your code, or even reuse it yourself! 
+It's a _friendly_ way to distribute your code, or even _reuse_ it yourself! 
 
 .footnote[
-[1] We expose user-facing functions, so the user/future you does not need to be concerned with the supporting/helper functions.
+[1] We expose __user-facing functions__, so the user/future you does not need to be concerned with the supporting/helper functions.
 ]
 &lt;img style = "max-width: 90%; 
               max-height = 90%; 
@@ -83,32 +83,65 @@ It's a friendly way to distribute your code, or even reuse it yourself!
               width = 350px/&gt;
 
 ---
-# Ways to install a package
+# Ways to install a package&lt;sup&gt;1&lt;/sup&gt;
 
-1. Packages are mainly stored on [Comprehensive R Archive Network aka CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) --&gt; we install these using:
-          install.packages('ggplot2') # OR
-          Tools -&gt; Install Packages ... menu item
-2. There are also many packages on GitHub --&gt; we install these using a helper package `devtools`:
+* Packages are mainly stored on [Comprehensive R Archive Network aka CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) --&gt; we install these using:
+Menu Item `Tools -&gt; Install Packages ...` OR
+
+```r
+          install.packages('ggplot2')
+```
+* There are also many packages on GitHub --&gt; we install these using a helper package `devtools`:
+
+```r
           install.packages('devtools')
           devtools::install_github("sciencificity/werpals")
-
+```
+          
 Then we load the package to make the functionality available using:
 
-        library(werpals)
+```r
+  library(werpals)
+```
+        
+.footnote[
+[1] Further to these there's [bioconductor](https://www.bioconductor.org/), but having never worked with it I just mention it here for those interested.
+]        
 ---
+# Name that thing
+.pull-left[&lt;img src = "./naming_things_is_hard.png" width = 300px&gt;]
 
+.pull-right[
+### Formal Naming Requirements
+- must only consist of letters, numbers and periods i.e.  `.`; 
+- it must start with a letter; and
+- it cannot end with a period. 
+
+You can’t use either hyphens or underscores in the package name. 
+]
+
+__Other Tips:__
+- It is recommended to avoid using periods, in the package name as it is easily confused with function names in the OO system of R.
+- Find a name that is easy to Google.
+- 
+
+---
 
 - Create a new R Project from the menu 
 
 `File -&gt; New Project -&gt; New Directory -&gt; R Package`
 
---
+---
+# Structure of a package
+- DESCRIPTION : the metadata of the package (package name, version, author, maintainer, dependencies etc.)
+- NAMESPACE : how your package interacts with R and with other packages
+- R/ : the code
+- man/ : the documentation
+- data/ : data
+- tests : the tests
+- vignettes : the vignettes
+- .Rbuildignore : a description of what will be ignored when the package is built
 
-- 
-
---
-
-- 
 ---
 # Resources
 
