@@ -16,6 +16,7 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 # run xaringan::inf_mr() to interactively show slides changing on right
+library(emo)
 ```
 
 # Keep in touch
@@ -100,7 +101,7 @@ Then we load the package to make the functionality available using:
 ]        
 ---
 # Name that thing
-.pull-left[<img src = "./naming_things_is_hard.png" width = 300px>]
+.pull-left[<img src = "./naming_things_is_hard.png" width = 320px>]
 
 .pull-right[
 ### Formal Naming Requirements
@@ -114,23 +115,38 @@ You can’t use either hyphens or underscores in the package name.
 __Other Tips:__
 - It is recommended to avoid using periods, in the package name as it is easily confused with function names in the OO system of R.
 - Find a name that is easy to Google.
-- 
+- Avoid using capitalisation. For e.g. I wanted to name the original pkg `disneycolouR` but Hadley advises otherwise `r emo::ji("smile")`.
+- Try and find a name that evokes what the pkg does.
+- Add an __`r`__ to the name, if it makes sense e.g. tidyr, dplyr etc.
 
 ---
+# Create a package
 
-- Create a new R Project from the menu 
+- Check if the name you're thinking about `r emo::ji("thinking")` is available? Checks CRAN etc.
 
-`File -> New Project -> New Directory -> R Package`
+.pull-left[
+```{r eval=FALSE, tidy=FALSE}
+install.packages("available")
+available::available("testthat")
+```
+]
+.pull-right[
+<img src = "./available.png" width = 320px>
+]
 
+- Create a new R Project from the menu:
+
+  `File -> New Project -> New Directory -> R Package` [Initialise with a git repo]
+  
+  <img src = "./create_pkg.png" width = 300px>
 ---
 # Structure of a package
 - DESCRIPTION : the metadata of the package (package name, version, author, maintainer, dependencies etc.)
-- NAMESPACE : how your package interacts with R and with other packages
-- R/ : the code
-- man/ : the documentation
+- NAMESPACE : how your package interacts with other packages and what you make available to the user
+- R/ : code files
+- man/ : documentation files
 - data/ : data
-- tests : the tests
-- vignettes : the vignettes
+- tests/ : the tests
 - .Rbuildignore : a description of what will be ignored when the package is built
 
 ---
@@ -140,7 +156,8 @@ __Other Tips:__
 1. [Complete original version: R packages book](http://r-pkgs.had.co.nz/)
 1. [Pre-flight check list](https://github.com/rdpeng/daprocedures/blob/master/lists/Rpackage_preflight.md)
 1. [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
-
+1. [R package development videos](https://www.youtube.com/playlist?list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM)
+1. [R package primer](http://kbroman.org/pkg_primer/)
 
 ---
 
