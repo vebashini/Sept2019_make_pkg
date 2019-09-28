@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 ## ⚔<br/>with xaringan
 ### Vebashini Naidoo (<span class="citation">@Vebash</span>)
 ### RLadies Johannesburg
-### 2019/09/22 (updated: 2019-09-25)
+### 2019/09/22 (updated: 2019-09-28)
 
 ---
 
@@ -54,18 +54,47 @@ Our package will be functional but not necessarily pretty.
 class: inverse, center, middle
 
 # Get Started
+### "In fact, anyone can and should write R packages!"&lt;sup&gt;1&lt;/sup&gt;
 
+.footnote[
+[1] Quote from Jeff Leek and Shannon Ellis  
+]
 ---
 
 # What's a package anyway?
 
-Packages are units of reproducible R code. 
+Packages are organised units of reproducible R code. 
 
 A package includes:
-- R functions
-- Documentation describing how to use the functions
-- Data
+- R functions&lt;sup&gt;1&lt;/sup&gt;: abstraction of details - user only needs to know what inputs and outputs are needed.
+- Documentation: describing how to use the functions.
+- Data.
 
+It's a friendly way to distribute your code, or even reuse it yourself! 
+
+.footnote[
+[1] We expose user-facing functions, so the user/future you does not need to be concerned with the supporting/helper functions.
+]
+&lt;img style = "max-width: 90%; 
+              max-height = 90%; 
+              display:block; 
+              margin:auto" 
+              src="./sodapop.gif" 
+              width = 350px/&gt;
+
+---
+# Ways to install a package
+
+1. Packages are mainly stored on [Comprehensive R Archive Network aka CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html) --&gt; we install these using:
+          install.packages('ggplot2') # OR
+          Tools -&gt; Install Packages ... menu item
+2. There are also many packages on GitHub --&gt; we install these using a helper package `devtools`:
+          install.packages('devtools')
+          devtools::install_github("sciencificity/werpals")
+
+Then we load the package to make the functionality available using:
+
+        library(werpals)
 ---
 
 
@@ -80,14 +109,20 @@ A package includes:
 --
 
 - 
+---
+# Resources
 
+1. [Dev version: R packages book](https://r-pkgs.org/)
+1. [Complete original version: R packages book](http://r-pkgs.had.co.nz/)
+1. [Pre-flight check list](https://github.com/rdpeng/daprocedures/blob/master/lists/Rpackage_preflight.md)
+1. [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
 
 
 ---
 
-# Git - Some tips &amp; Useful commands
+# Git - Some tips &amp; Useful commands (Windows)
 
-## Using Git Bash
+## Using Git Bash or the Terminal window in RStudio
 - `pwd`: Tells you where you are currently, literally print working directory.
 &lt;img src = "./git1.png" width = 300px&gt;
 
