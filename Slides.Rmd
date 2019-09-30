@@ -146,16 +146,31 @@ available::available("cluerumour")
 - R/ : code files
 - man/ : documentation files
 - data/ : data
-- .Rbuildignore : a description of what will be ignored when the package is built
+- .Rbuildignore : describes what will be ignored when the package is built
 
 ---
-# New "Build" tab in the pane where  "History" and "Environment show
+# New "Build" tab in the pane where "History" and "Environment show
 <img style = "max-width: 100%; 
               max-height = 100%; 
               display:block; 
               margin:auto" 
               src="./build_tool.gif" 
               width = 700px/>
+---
+# Some cleanup and config
+
+- If you created the pkg without bringing your own code in, a default "R/hello.R" file and "man/hello.Rd" will be created. Delete these files.
+- Configure your build tools: `Build Tab -> More -> Configure Build Tools...`.
+  * `r emo::ji("check")` Generate documentation with Roxygen and 
+  * Click Configure...: `r emo::ji("check")` "Install and Restart" or `r emo::ji("check")` "Build and Reload" whichever is available on your configure.
+- Delete the `NAMESPACE` file to regenerate this later.
+
+<img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./config.gif" 
+              width = 600px/>
 ---
 # Whodunnit? Colonel Mustard in the Kitchen with the Trophy?
 ### Let's start a Rumour
@@ -177,11 +192,51 @@ available::available("cluerumour")
 # Take it for a spin
 
 - Usually you would test your functions but loading it into the workspace or sourcing the file.
+
 - Tbh I did run my functions this way; I created the functions outside of the package and then loaded the code file I wanted included in my package at the Project creation step.
 - Even if you built your scripts outside of the project, you should test it here using the `devtools` package as follows:
   ```{r eval=FALSE, tidy=FALSE}
   devtools::load_all()
   ```
+  
+<img style = "max-width: 90%; 
+              max-height = 90%; 
+              display:block; 
+              margin:auto" 
+              src="./test_fn1.png" 
+              width = 600px/>  
+---
+# Git .... outa here
+### Setup the Git connection
+- Go to `GitHub -> Repositories -> Click the` <span style="color:green">"New"</span> `button` to create a new repo.
+
+- In the __Terminal__ run:
+
+  git remote add origin https://github.com/yourname/cluerumour.git
+  
+- Optional - In the __Console__ run: 
+
+  `usethis::use_git_config(user.name = "Your Name", user.email = "YourName@thatplace.com")`
+
+- __RStudio Git Tab__: `Click Commit -> choose files to commit -> Add a commit message -> Click Commit`
+
+- Thereafter exit window, and in your __terminal__ window type:
+
+  git push -u origin master
+
+- The `Push` and `Pull` buttons should now be available in the Git tab.
+---
+# Building and Testing
+
+- Check Package<sup>1</sup>: In Build Menu -> click Check OR
+
+  ```{r eval=FALSE, tidy=FALSE}
+  devtools::check()
+  ```
+  
+.footnote[
+[1] You should see some warnings about a license, and the undocumented functions.
+]     
 
 ---
 # Resources
@@ -192,6 +247,7 @@ available::available("cluerumour")
 1. [Writing an R package from scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
 1. [R package development videos](https://www.youtube.com/playlist?list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM)
 1. [R package primer](http://kbroman.org/pkg_primer/)
+1. [RStudio video on package writing - this is the resource I used originally!](https://resources.rstudio.com/wistia-rstudio-essentials-2/rstudioessentialsprogrammingpart3redux)
 
 ---
 
