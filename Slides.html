@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 ## ⚔<br/>with xaringan
 ### Vebashini Naidoo (<span class="citation">@Vebash</span>)
 ### RLadies Johannesburg
-### 2019/09/22 (updated: 2019-09-30)
+### 2019/09/22 (updated: 2019-10-01)
 
 ---
 
@@ -121,12 +121,30 @@ You can’t use either hyphens or underscores in the package name.
 ]
 
 __Other Tips:__
-- It is recommended to avoid using periods, in the package name as it is easily confused with function names in the OO system of R.
+- It is recommended to avoid using periods in the package name, as it is easily confused with function names in the OO system of R.
 - Find a name that is easy to Google.
 - Avoid using capitalisation. For e.g. I wanted to name the original pkg `disneycolouR` but Hadley advises otherwise 😄.
 - Try and find a name that evokes what the pkg does.
 - Add an __`r`__ to the name, if it makes sense e.g. tidyr, dplyr etc.
 
+---
+# Whodunnit? Colonel Mustard in the Kitchen with the Trophy?
+### Let's start a Rumour
+
+&lt;img style = "max-width: 90%; 
+              max-height = 90%; 
+              display:block; 
+              margin:auto" 
+              src="./clue.png" 
+              width = 350px/&gt;
+
+- We can create an R script file and place it in the __`/R`__ folder, or we can use the `usethis` package. 
+
+  
+  ```r
+      usethis::use_r("cluerumour")
+  ```
+- Fill in the body of the function(s)  
 ---
 # Create a package
 
@@ -158,7 +176,7 @@ available::available("cluerumour")
 - .Rbuildignore : describes what will be ignored when the package is built
 
 ---
-# New "Build" tab in the pane where "History" and "Environment show
+# New "Build" tab in the pane where "History" and "Environment" show
 &lt;img style = "max-width: 100%; 
               max-height = 100%; 
               display:block; 
@@ -181,29 +199,46 @@ available::available("cluerumour")
               src="./config.gif" 
               width = 600px/&gt;
 ---
-# Whodunnit? Colonel Mustard in the Kitchen with the Trophy?
-### Let's start a Rumour
+# Building and Testing
 
-&lt;img style = "max-width: 90%; 
-              max-height = 90%; 
-              display:block; 
-              margin:auto" 
-              src="./clue.png" 
-              width = 350px/&gt;
-
-- We can create an R script file and place it in the __`/R`__ folder, or we can use the `usethis` package. 
+- Check Package&lt;sup&gt;1&lt;/sup&gt;: In Build Menu -&gt; click Check OR
 
   
   ```r
-      usethis::use_r("cluerumour")
+  devtools::check()
   ```
-- Fill in the body of the function(s)  
+  
+.footnote[
+[1] You should see some warnings about a license, and the undocumented functions.
+]     
+---
+# Update __Description__ File
+&lt;img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./self_description.png" 
+              width = 450px/&gt;
+- The contents of the description file are pretty self explanatory.
+- Change `Author:` to `Authors@R:` with value
+  
+  ```r
+    person("Vebash", "Naidoo", 
+           email = "test@thatplace.co.za", role = c("aut", "cre"))
+  ```
+- The min necessary, is an Author (aut) and Maintainer (cre); the above line makes the `Maintainer:` field redundant so you may remove it.
+- Run the ffg. to create a license - it will update the DESCRIPTION file:
+  
+  ```r
+  usethis::use_mit_license("Vebash Naidoo")
+  ```
+- Add a `Depends: R (&gt;= 3.3.0)` for a minimal R version your package would need.
 ---
 # Take it for a spin
 
 - Usually you would test your functions but loading it into the workspace or sourcing the file.
 
-- Tbh I did run my functions this way; I created the functions outside of the package and then loaded the code file I wanted included in my package at the Project creation step.
+- Tbh, I did run my functions this way. I created the functions outside of the package and then loaded the code file I wanted included in my package at the Project creation step.
 - Even if you built your scripts outside of the project, you should test it here using the `devtools` package as follows:
   
   ```r
@@ -221,35 +256,97 @@ available::available("cluerumour")
 ### Setup the Git connection
 - Go to `GitHub -&gt; Repositories -&gt; Click the` &lt;span style="color:green"&gt;"New"&lt;/span&gt; `button` to create a new repo.
 
-- In the __Terminal__ run:
+- Back in RStudio, in the __Terminal__ run:
 
   git remote add origin https://github.com/yourname/cluerumour.git
   
-- Optional - In the __Console__ run: 
+- Optional - In the RStudio __Console__ run: 
 
   `usethis::use_git_config(user.name = "Your Name", user.email = "YourName@thatplace.com")`
 
 - __RStudio Git Tab__: `Click Commit -&gt; choose files to commit -&gt; Add a commit message -&gt; Click Commit`
 
-- Thereafter exit window, and in your __terminal__ window type:
+- Thereafter exit the Commit window, and in your RStudio __terminal__ window type:
 
   git push -u origin master
 
 - The `Push` and `Pull` buttons should now be available in the Git tab.
 ---
-# Building and Testing
+# Document Functions
+&lt;img style = "max-width: 90%; 
+              max-height = 90%; 
+              display:block; 
+              margin:auto" 
+              src="./document.jpg" 
+              width = 200px/&gt;  
+- Navigate inside your function, then access menu item `Code -&gt; Insert Roxygen Skeleton` to insert a documentation template. 
+- Things to consider: 
+  * Is this a helper function? Or one that is user-facing? Only `@export` user-facing functions.
+  * Does your function use any packages? __DO NOT__ use library(xxx). Instead qualify the function you're using from which package it comes from e.g. `tidyr::pivot_longer()` and include the comment
+            `#'@importFrom tidyr pivot_longer`
+---
+# Roxygen magic
 
-- Check Package&lt;sup&gt;1&lt;/sup&gt;: In Build Menu -&gt; click Check OR
+&lt;img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./doc.gif" 
+              width = 800px/&gt;
 
-  
-  ```r
-  devtools::check()
-  ```
-  
-.footnote[
-[1] You should see some warnings about a license, and the undocumented functions.
-]     
+---
+# Unit tests
+&lt;img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./testing.png" 
+              width = 500px/&gt;
+- `Build -&gt; More -&gt; Clean and Rebuild`
 
+- In console run: `usethis::use_testthat()` - creates a test folder and necessary files.
+
+- The tests aren't written for you, the setup is created!
+
+- In console run: `usethis::use_test("filename")`
+
+- Fill out your tests and then run the tests using:
+    
+    ```r
+    devtools::load_all()
+    devtools::test()
+    ```
+---
+# Create a Readme file
+- A skeleton of a Readme file will be generated if you use: 
+
+    `usethis::use_readme_rmd()`
+
+- Knit the document to create the Readme.
+
+- Commit and Push your files to GitHub
+
+
+&lt;img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./high_five.gif" 
+              width = 500px/&gt;
+
+---
+# So why is this not pretty?
+So I did say the package will be functional but not necessarily pretty. Some additional things to do:
+1. Run Travis to check your package install on linux, ubuntu etc. `usethis::use_travis()` [Your package has to be public].
+2. Run covr to check package coverage
+3. But all in all ....
+
+&lt;img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./nice.gif" 
+              width = 350px/&gt;
 ---
 # Resources
 
