@@ -167,6 +167,9 @@ available::available("cluerumour")
   
   &lt;img src = "./create_pkg.png" width = 300px&gt;
 ---
+class: inverse, center, middle
+# What have we got?
+---
 # Structure of a package
 - DESCRIPTION : the metadata of the package (package name, version, author, maintainer, dependencies etc.)
 - NAMESPACE : how your package interacts with other packages (what does the package import) and what you make available to the user (what does the package export).
@@ -201,16 +204,15 @@ available::available("cluerumour")
 ---
 # Building and Testing
 
-- Check Package&lt;sup&gt;1&lt;/sup&gt;: In Build Menu -&gt; click Check OR
+- Check Package: In Build Pane -&gt; click ✅ Check OR run
 
   
   ```r
   devtools::check()
   ```
-  
-.footnote[
-[1] You should see some warnings about a license, and the undocumented functions.
-]     
+- You should see some warnings about a license, and the undocumented functions.
+- In our case depending on the file you imported (if you used my test file) you'd get additional warnings about the imports which are not declared.
+
 ---
 # Update __Description__ File
 &lt;img style = "max-width: 100%; 
@@ -287,13 +289,23 @@ available::available("cluerumour")
 ---
 # Roxygen magic
 
+- Okay we have included our imports and exports in the NAMESPACE file created by Roxygen, but the DESCRIPTION file will generate an error - try it ... run `devtools::check()`.
+- To add the Imports&lt;sup&gt;1&lt;/sup&gt; part into your DESCRIPTION file run:
+`usethis::use_package("purrr") # Defaults to imports`
+
+.footnote[
+[1] Imports is something your functions use directly, if you want to add a `Suggests` to your package use: `usethis::use_package("purrr", "Suggests")`. Suggested packages are usually not directly used by your functions - it's something you may have used to test your package for example.
+]  
+---
+# Roxygen magic ...
+
 &lt;img style = "max-width: 100%; 
               max-height = 100%; 
               display:block; 
               margin:auto" 
               src="./doc.gif" 
               width = 800px/&gt;
-
+          
 ---
 # Unit tests
 &lt;img style = "max-width: 100%; 
@@ -333,12 +345,35 @@ available::available("cluerumour")
               margin:auto" 
               src="./high_five.gif" 
               width = 500px/&gt;
+---
+class: inverse, center, middle
 
+# The Ultimate Test!
+&lt;img style = "max-width: 100%; 
+              max-height = 100%; 
+              display:block; 
+              margin:auto" 
+              src="./anticipation.gif" 
+              width = 500px/&gt;
+---
+# ..... Does it load?
+
+- Go to your folder where your installs download. Delete the package you just created.
+
+- Open a fresh RStudio session.
+
+- Run the install as per your Readme file on GitHub:
+      
+      ```r
+      devtools::install_github("sciencificity/cluerumour")
+      ```
+- Test your package and the help pages load etc.      
 ---
 # So why is this not pretty?
-So I did say the package will be functional but not necessarily pretty. Some additional things to do:
+So, I did say the package will be functional but not necessarily pretty. Some additional things to do:
 1. Run Travis to check your package install on linux, ubuntu etc. `usethis::use_travis()` [Your package has to be public].
-2. Run covr to check package coverage
+2. Run covr to check package coverage.
+3. It was a trivial example function and we did not have any data in our package.
 3. But all in all ....
 
 &lt;img style = "max-width: 100%; 
@@ -346,7 +381,7 @@ So I did say the package will be functional but not necessarily pretty. Some add
               display:block; 
               margin:auto" 
               src="./nice.gif" 
-              width = 350px/&gt;
+              width = 300px/&gt;
 ---
 # Resources
 
@@ -387,6 +422,9 @@ So I did say the package will be functional but not necessarily pretty. Some add
 # Git - Some tips &amp; Useful commands continued ...
 - `cat .git/config`: Displays the contents of the config file.
 &lt;img src = "./git7.PNG" width = 400px&gt;
+
+- `git log`: Shows you the history of your repo, starting at the latest commit and working backwards.
+&lt;img src = "./git8.PNG" width = 600px&gt;
 
 ---
 
